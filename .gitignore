@@ -16,3 +16,4 @@ out
 /CordovaLib/build
 /app/build
 .gradle
+.apk
