@@ -16,7 +16,7 @@ public class EditUserProfileActivity extends AppCompatActivity implements Activi
     EditText mUserProfileMobileInput;
     Button mSubmitButton;
 
-    EditUserProfileActivity() {
+    public EditUserProfileActivity() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }

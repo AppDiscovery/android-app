@@ -10,6 +10,7 @@ import android.widget.RemoteViewsService;
 
 import com.appdiscovery.app.AppsWidgetProvider;
 import com.appdiscovery.app.R;
+import com.appdiscovery.app.Utils;
 import com.appdiscovery.app.WebApp;
 
 import java.io.InputStream;
@@ -61,7 +62,8 @@ class AppsWidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     public RemoteViews getViewAt(int position) {
         RemoteViews row = new RemoteViews(context.getPackageName(),
                 R.layout.app_widget_list_item);
-        row.setImageViewBitmap(R.id.widget_app_image_view, downloadBitmap(this.webapps[position].latest_version.logo_url));
+        // row.setImageViewBitmap(R.id.widget_app_image_view, downloadBitmap(this.webapps[position].latest_version.logo_url));
+        row.setImageViewBitmap(R.id.widget_app_image_view, BitmapFactory.decodeFile(Utils.downloadFile(context, this.webapps[position].latest_version.logo_url, ".png")));
         row.setTextViewText(R.id.widget_app_text, this.webapps[position].display_name);
         Intent i = new Intent();
         i.putExtra("position", position);

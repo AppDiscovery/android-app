@@ -9,11 +9,11 @@ public class Config {
         return ourInstance;
     }
 
-    public String centralServerAddr = "http://ad-central-server.kevinwang.cc:889";
+    public String centralServerAddr = "http://192.168.99.100:889";
 
-    public String repoServerAddr = "http://ad-app-repo-dynamic.kevinwang.cc:888";
-    public String canonicalRepoServerAddr = "http://ad-central-server.kevinwang.cc:888";
-    public String lanRepoServerAddr = "http://lan-app-repo-server.appd:888";
+    public String repoServerAddr = "http://192.168.99.100:888";
+    public String canonicalRepoServerAddr = "http://192.168.99.100:888";
+    public String lanRepoServerAddr = "http://192.168.99.100:888";
 
     public static String getRepoServerAddr(boolean bypassLan) {
         if (LanServerAvailabilityMonitor.lanAvailable && !bypassLan) {

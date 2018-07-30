@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private WebApp[] webapps = new WebApp[0];
     public static String activeAppName = "";
 
-    MainActivity() {
+    public MainActivity() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         LanServerAvailabilityMonitor.start();
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mRecyclerView.setHasFixedSize(true);
         mLocationWatcher.start();
         WebApp.setContext(this);
+        AppListAdapter.setContext(this);
         mEditUserProfileBtn = findViewById(R.id.edit_user_profile_btn);
         mEditUserProfileBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, EditUserProfileActivity.class);

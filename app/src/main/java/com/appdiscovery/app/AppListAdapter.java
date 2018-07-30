@@ -1,5 +1,6 @@
 package com.appdiscovery.app;
 
+import android.content.Context;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,9 @@ import java.io.InputStream;
 class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
     private final View.OnClickListener mOnClickListener;
     private WebApp[] webApps;
+    private static Context context;
+
+    public static void setContext(Context context) {AppListAdapter.context = context;}
 
     public AppListAdapter(WebApp[] webApps, View.OnClickListener onClickListener) {
         this.webApps = webApps;
@@ -50,8 +54,10 @@ class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
         TextView appTitleText = holder.mView.findViewById(R.id.appName);
         appTitleText.setText(webApps[position].display_name);
         TextView appDescText = holder.mView.findViewById(R.id.appDesc);
-        new DownloadImageTask(holder.mView.findViewById(R.id.app_image_view))
-                .execute(webApps[position].latest_version.logo_url);
+        //TODO
+        buildIconImageView(holder.mView.findViewById(R.id.app_image_view), webApps[position].latest_version.logo_url);
+//        new DownloadImageTask(holder.mView.findViewById(R.id.app_image_view))
+//                .execute(webApps[position].latest_version.logo_url);
         if (webApps[position].distance_in_m < 0) {
             appDescText.setText("附近的置顶APP");
             appDescText.setTextColor(Color.rgb(255, 200, 0));
@@ -59,6 +65,11 @@ class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
             appDescText.setText(String.format("距离您 %.2f m", webApps[position].distance_in_m));
         }
 //        holder.mView.setText(mDataset[position]);
+    }
+
+    public void buildIconImageView(ImageView bmImage, String url) {
+        Bitmap iconBitmap = BitmapFactory.decodeFile(Utils.downloadFile(context, url, ".png"));
+        bmImage.setImageBitmap(iconBitmap);
     }
 
     @Override
