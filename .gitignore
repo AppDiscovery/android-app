@@ -14,6 +14,7 @@ out
 # Gradle builds
 /build
 /CordovaLib/build
+/app/debug
 /app/build
 /app/release
 .gradle
