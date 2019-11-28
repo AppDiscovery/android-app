@@ -18,6 +18,8 @@ public class WifiStateReceiver extends BroadcastReceiver {
     public WifiStateReceiver(Consumer<Integer> onWifiStateChangeCallback){
         this.onWifiStateChangeCallback = onWifiStateChangeCallback;
         String url1 = NetworkConfig.centralServerAddr;
+        String url2 = NetworkConfig.lanRepoServerAddr;
+        String url3 = NetworkConfig.repoServerAddr;
     }
 
     @Override
