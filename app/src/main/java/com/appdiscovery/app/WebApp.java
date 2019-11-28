@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import android.util.Log;
 
 public class WebApp {
     public static HashMap<String, Boolean> mapAppIdToRunOnFinish = new HashMap<>();
@@ -39,6 +40,7 @@ public class WebApp {
         if (!this.isAppDownloaded()) {
             ArrayList<String> depsCodeFiles = new ArrayList<>();
             for (WebAppDependency dep : this.deps) {
+                Log.d("dep:", dep.code_bundle_hash);
                 depsCodeFiles.add(Utils.downloadFile(context, dep.code_bundle_hash, ".js"));
             }
             Utils.downloadFile(context, this.latest_version.code_bundle_hash, ".js");
@@ -54,6 +56,7 @@ public class WebApp {
             File file = AppBuilder.build(context, this.deps, this.latest_version.code_bundle_hash, this.launch_params_json);
             Intent myIntent = new Intent(context, WebViewActivity.class);
             myIntent.putExtra("fileName", file.getAbsolutePath());
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(myIntent);
         } else {
             Toast.makeText(context, "APP正在传输中，将很快为您打开", Toast.LENGTH_LONG).show();

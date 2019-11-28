@@ -9,11 +9,14 @@ public class Config {
         return ourInstance;
     }
 
-    public String centralServerAddr = "http://192.168.99.100:889";
+//    public String centralServerAddr = "http://[2001:da8:270:2020:f816:3eff:fee8:8f96]:5901";
+//    public String repoServerAddr = "http://[2001:da8:270:2020:f816:3eff:fee8:8f96]:5900";
+//    public String lanRepoServerAddr = "http://[2001:da8:270:2020:f816:3eff:fee8:8f96]:5900";
 
-    public String repoServerAddr = "http://192.168.99.100:888";
-    public String canonicalRepoServerAddr = "http://192.168.99.100:888";
-    public String lanRepoServerAddr = "http://192.168.99.100:888";
+    public String centralServerAddr = "http://47.101.202.129:889";
+    public String repoServerAddr = "http://47.101.202.129:888";
+    public String canonicalRepoServerAddr = "http://47.101.202.129:888";
+    public String lanRepoServerAddr = "http://47.101.202.129:888";
 
     public static String getRepoServerAddr(boolean bypassLan) {
         if (LanServerAvailabilityMonitor.lanAvailable && !bypassLan) {

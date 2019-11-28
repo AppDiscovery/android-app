@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import java.util.function.Consumer;
 
@@ -43,6 +44,7 @@ public class LocationWatcher {
         LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                Log.d("location:", String.format("Lat: %f, Log: %f", location.getLatitude(), location.getLongitude()));
                 onLocationChangeCallback.accept(location);
             }
 
@@ -74,9 +76,9 @@ public class LocationWatcher {
 //        locationManager.requestLocationUpdates(
 //                LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
         if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
         } else {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
         }
     }
 }

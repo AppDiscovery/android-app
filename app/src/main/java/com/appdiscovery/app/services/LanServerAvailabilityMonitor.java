@@ -1,5 +1,6 @@
 package com.appdiscovery.app.services;
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
@@ -13,6 +14,9 @@ import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import android.net.wifi.WifiManager;
+import android.net.wifi.WifiInfo;
 
 //TODO: listen for network change event and trigger rediscovery
 
@@ -38,6 +42,10 @@ public class LanServerAvailabilityMonitor {
         }, interval);
     }
 
+//    public static void checkAvailability() {
+//        lanAvailable = false;
+//    }
+
     public static void checkAvailability() {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -53,4 +61,7 @@ public class LanServerAvailabilityMonitor {
         }
         Log.d(TAG, "Lan server availability: " + String.valueOf(lanAvailable));
     }
+
+
+
 }

@@ -17,12 +17,13 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 
-class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
+public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
     private final View.OnClickListener mOnClickListener;
     private WebApp[] webApps;
     private static Context context;
 
     public static void setContext(Context context) {AppListAdapter.context = context;}
+
 
     public AppListAdapter(WebApp[] webApps, View.OnClickListener onClickListener) {
         this.webApps = webApps;
@@ -38,7 +39,7 @@ class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
         }
     }
 
-
+    // Item 的布局
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext())
@@ -47,6 +48,7 @@ class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
         return new ViewHolder(v);
     }
 
+    // 更新每个 Item
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -54,7 +56,7 @@ class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
         TextView appTitleText = holder.mView.findViewById(R.id.appName);
         appTitleText.setText(webApps[position].display_name);
         TextView appDescText = holder.mView.findViewById(R.id.appDesc);
-        //TODO
+        // 根据 url 绘制应用 Icon
         buildIconImageView(holder.mView.findViewById(R.id.app_image_view), webApps[position].latest_version.logo_url);
 //        new DownloadImageTask(holder.mView.findViewById(R.id.app_image_view))
 //                .execute(webApps[position].latest_version.logo_url);
